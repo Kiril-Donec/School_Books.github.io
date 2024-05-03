@@ -81,10 +81,19 @@
 
     <script>
         function openPdfPreview(pdfUrl) {
-            var modal = document.getElementById("pdfModal");
-            var iframe = document.getElementById("pdfFrame");
-            iframe.src = pdfUrl;
-            modal.style.display = "block";
+            // Проверяем ширину экрана
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            
+            // Если ширина экрана меньше 768px (типичная ширина телефона), открыть ссылку в новой вкладке
+            if (screenWidth < 768) {
+                window.open(pdfUrl, '_blank');
+            } else {
+                // Иначе открыть модальное окно
+                var modal = document.getElementById("pdfModal");
+                var iframe = document.getElementById("pdfFrame");
+                iframe.src = pdfUrl;
+                modal.style.display = "block";
+            }
         }
 
         function closePdfPreview() {

@@ -56,9 +56,6 @@ body {
     text-align: center;
     color: #3a3a3a;
     font-weight: bold;
-
-    /* Анимация */
-    animation: slideInFromBottom 1s ease;
 }
 
 /* Модифицируем стили модального окна */
