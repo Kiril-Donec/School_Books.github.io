@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(-45deg, #ffffff, #b3e0f2);
+    background-size: 400% 400%;
+    animation: gradientBackground 10s ease infinite;
+    color: #fff; /* Цвет текста */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeIn 2s ease; /* Анимация появления контейнера */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку для контейнера */
+}
+
+.book {
+    margin: 20px;
+    text-align: center;
+    width: 200px; /* Ширина книги */
+    height: 250px; /* Высота книги */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень книги */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавное изменение тени и размера */
+}
+
+.book img {
+    width: 100%;
+    height: auto; /* Высота автоматически подстраивается под ширину */
+    object-fit: cover; /* Изображение заполняет всю область, сохраняя пропорции */
+}
+
+.book:hover {
+    transform: scale(1.05); /* Увеличение размера при наведении */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Увеличение тени при наведении */
+}
+
+.book-title {
+    /* Позиционирование и размеры */
+    position: absolute;
+    bottom: 10px;
+    left: 50%; /* Центрируем элемент по горизонтали */
+    transform: translateX(-50%); /* Смещаем элемент на половину его ширины влево */
+    width: 80%; /* Уменьшаем ширину элемента для создания отступов по бокам */
+    padding: 10px; /* Увеличиваем отступы для лучшей читаемости */
+
+    /* Стили фона */
+    background-color: rgba(255, 255, 255, 0.8); /* Увеличиваем непрозрачность фона для лучшей видимости текста */
+    border-radius: 20px; /* Увеличиваем радиус скругления углов для более мягкого вида */
+
+    /* Стили текста */
+    text-align: center;
+    color: #3a3a3a;
+    font-weight: bold;
+
+    /* Анимация */
+    animation: slideInFromBottom 1s ease;
+}
+
+/* Модифицируем стили модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5% auto; /* Уменьшаем отступ сверху и снизу */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 95%; /* Задаем фиксированную ширину модального окна */
+    max-width: 800px; /* Устанавливаем максимальную ширину */
+    height: 90%; /* Устанавливаем фиксированную высоту */
+    max-height: 90%; /* Устанавливаем максимальную высоту */
+    border-radius: 15px;
+    animation: modalFadeIn 0.5s ease;
+    overflow-y: auto; /* Добавляем возможность вертикальной прокрутки, если контент не помещается */
+}
+
+#pdfContainer {
+    width: 100%;
+    height: 100%; /* Изменено на 100% */
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#pdfFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Скрываем крестик при прокрутке модального окна */
+.modal-content:hover .close {
+    display: block;
+}
+
+.close {
+    display: none; /* Сначала скрываем крестик */
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+.close:hover {
+    color: #ff0000;
+}
+
+/* Новый класс для анимации закрытия модального окна */
+.closing {
+    animation: modalFadeOut 0.5s ease;
+}
+
+/* Анимации */
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modalFadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
