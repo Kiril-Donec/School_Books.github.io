@@ -102,6 +102,22 @@
             iframe.src = "";
             modal.style.display = "none";
         }
+
+        // Функция для проверки актуальности кеша и его обновления
+        function checkCache() {
+            var currentVersion = '1.0'; // Текущая версия кеша
+            var cacheVersion = localStorage.getItem('cacheVersion');
+
+            // Если версия кеша отличается от текущей версии, обновляем кеш
+            if (!cacheVersion || cacheVersion !== currentVersion) {
+                // Обновляем кеш
+                localStorage.setItem('cacheVersion', currentVersion);
+                location.reload(); // Перезагружаем страницу для загрузки нового кеша
+            }
+        }
+
+        // Вызываем функцию проверки кеша при загрузке страницы
+        checkCache();
     </script>
     <script src="script.js"></script>
 </body>
